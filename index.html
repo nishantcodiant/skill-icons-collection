@@ -4,21 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
+  <!-- Favicon for the site -->
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <title>Results summary component</title>
+  <!-- Preconnecting to Google Fonts for better performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <!-- style -->
+  <!-- Importing Hanken Grotesk font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- Linking to external CSS for styling the page -->
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
+  <!-- Main container for the results page content -->
   <main class="resultPage">
     <div class="container">
       <div class="resultPage_inner">
+        <!-- Left section showing user's score and grade -->
         <div class="resultPage_left">
           <h2>Your Result</h2>
           <div class="resultPage_number">
@@ -28,28 +31,54 @@
           <h3 class="grade">Great</h3>
           <p>You scored higher than 65% of the people who have taken these tests.</p>
         </div>
+        <!-- Right section for summary and further action -->
         <div class="resultPage_right">
           <h2>Summary</h2>
+          <!-- Dynamic list that will display summary items -->
           <ul class="summaryBox list-unstyled" id="category-list"></ul>
+          <!-- Continue button for further navigation or action -->
           <button type="button" class="btn btn-primary">Continue</button>
         </div>
       </div>
     </div>
   </main>
+  <!-- JavaScript to dynamically populate the summary list with data -->
   <script>
+    // Array of category objects, each representing a skill category with a score and icon
     const jsonData = [
-      { "category": "Reaction", "score": 80, "icon": "./assets/images/icon-reaction.svg" },
-      { "category": "Memory", "score": 92, "icon": "./assets/images/icon-memory.svg" },
-      { "category": "Verbal", "score": 61, "icon": "./assets/images/icon-verbal.svg" },
-      { "category": "Visual", "score": 72, "icon": "./assets/images/icon-visual.svg" }
+      {
+        // Represents the Reaction category with its score and icon
+        "category": "Reaction",
+        "score": 80,
+        "icon": "./assets/images/icon-reaction.svg"
+      },
+      {
+        // Represents the Memory category with its score and icon
+        "category": "Memory",
+        "score": 92,
+        "icon": "./assets/images/icon-memory.svg"
+      },
+      {
+        // Represents the Verbal category with its score and icon
+        "category": "Verbal",
+        "score": 61,
+        "icon": "./assets/images/icon-verbal.svg"
+      },
+      {
+        // Represents the Visual category with its score and icon
+        "category": "Visual",
+        "score": 72,
+        "icon": "./assets/images/icon-visual.svg"
+      }
     ];
 
+    // Selecting the category list container to add items
     const content = document.getElementById('category-list');
-
+    // Looping through each item in jsonData to create list items dynamically
     jsonData.forEach(data => {
         const listItem = document.createElement('li');
         listItem.classList.add('summaryBox_item', `summaryBox_item-${data.category.toLowerCase()}`);
-
+        // Setting HTML structure for each category item
         listItem.innerHTML = `
             <div class="summaryBox_item_left">
                 <img src="${data.icon}" alt="${data.category} icon">
@@ -59,10 +88,9 @@
                 <p class="score"><span>${data.score}</span> / 100</p>
             </div>
         `;
-
+        // Appending each item to the category list
         content.appendChild(listItem);
     });
   </script>
 </body>
-
 </html>
