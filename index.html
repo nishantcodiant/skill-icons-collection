@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Results summary component</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <!-- style -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+  <main class="resultPage">
+    <div class="container">
+      <div class="resultPage_inner">
+        <div class="resultPage_left">
+          <h2>Your Result</h2>
+          <div class="resultPage_number">
+            <h1>76</h1>
+            <p>of 100</p>
+          </div>
+          <h3 class="grade">Great</h3>
+          <p>You scored higher than 65% of the people who have taken these tests.</p>
+        </div>
+        <div class="resultPage_right">
+          <h2>Summary</h2>
+          <ul class="summaryBox list-unstyled" id="category-list"></ul>
+          <button type="button" class="btn btn-primary">Continue</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const jsonData = [
+      { "category": "Reaction", "score": 80, "icon": "./assets/images/icon-reaction.svg" },
+      { "category": "Memory", "score": 92, "icon": "./assets/images/icon-memory.svg" },
+      { "category": "Verbal", "score": 61, "icon": "./assets/images/icon-verbal.svg" },
+      { "category": "Visual", "score": 72, "icon": "./assets/images/icon-visual.svg" }
+    ];
+
+    const content = document.getElementById('category-list');
+
+    jsonData.forEach(data => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('summaryBox_item', `summaryBox_item-${data.category.toLowerCase()}`);
+
+        listItem.innerHTML = `
+            <div class="summaryBox_item_left">
+                <img src="${data.icon}" alt="${data.category} icon">
+                <h3>${data.category}</h3>
+            </div>
+            <div class="summaryBox_item_right">
+                <p class="score"><span>${data.score}</span> / 100</p>
+            </div>
+        `;
+
+        content.appendChild(listItem);
+    });
+  </script>
+</body>
+
+</html>
